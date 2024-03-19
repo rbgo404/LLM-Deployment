@@ -103,9 +103,14 @@ Time to launch the Triton server!
 ```
 python3 /opt/scripts/launch_triton_server.py --model_repo /all_models/inflight_batcher_llm --world_size 1
 ```
+When successfully deployed, the server produces logs similar to the following ones.
 
-### 8. Query the server with the Triton generate endpoint
-[Query the server with the Triton generate endpoint](https://github.com/triton-inference-server/tensorrtllm_backend#query-the-server-with-the-triton-generate-endpoint)
+```
+I0919 14:52:10.475738 293 grpc_server.cc:2451] Started GRPCInferenceService at 0.0.0.0:8001
+I0919 14:52:10.475968 293 http_server.cc:3558] Started HTTPService at 0.0.0.0:8000
+I0919 14:52:10.517138 293 http_server.cc:187] Started Metrics Service at 0.0.0.0:8002
+```
+### 8. Test the server with the Triton generate endpoint:
 
 ```
 curl -X POST localhost:8000/v2/models/ensemble/generate -d '{"text_input": "What is machine learning?", "max_tokens": 20, "bad_words": "", "stop_words": ""}'
